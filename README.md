@@ -1,73 +1,78 @@
-# Welcome to your Lovable project
+# IronHide Chrome Extension
 
-## Project info
+A Chrome extension for tab opacity control and privacy protection.
 
-**URL**: https://lovable.dev/projects/6a9ecd92-cac7-451d-b6ae-5aaad23c320b
+## Features
 
-## How can I edit this code?
+- **Adjustable Opacity**: Control tab opacity from 0-100%
+- **Quick Toggle**: Enable/disable privacy mode instantly
+- **Keyboard Shortcut**: Use `Ctrl+Shift+Z` for quick access
+- **Per-Tab Control**: Individual settings for each browser tab
+- **Instant Activation**: Immediate privacy protection
 
-There are several ways of editing your application.
+## Installation
 
-**Use Lovable**
+1. Download or clone this repository
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
+4. Click "Load unpacked" and select the extension folder
+5. The IronHide icon will appear in your toolbar
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6a9ecd92-cac7-451d-b6ae-5aaad23c320b) and start prompting.
+## How to Use
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Install the Extension**: Add IronHide to Chrome from the toolbar
+2. **Access Controls**: Click the IronHide icon or use `Ctrl+Shift+Z`
+3. **Toggle Privacy Mode**: Enable privacy mode and adjust opacity
+4. **Quick Access**: Use the keyboard shortcut for instant toggle
 
-**Use your preferred IDE**
+## Files Structure
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- `manifest.json` - Extension configuration and permissions
+- `popup.html` - Extension popup interface
+- `popup.js` - Popup functionality and UI interactions
+- `content.js` - Content script that runs on web pages
+- `background.js` - Background service worker for shortcuts and tab management
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Privacy & Security
 
-Follow these steps:
+- **Local Storage Only**: All settings are stored locally on your device
+- **No Data Collection**: IronHide doesn't collect or transmit any user data
+- **Minimal Permissions**: Only requests necessary permissions for functionality
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Use Cases
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Public Spaces**: Working in cafes, libraries, or shared environments
+- **Screen Sharing**: Privacy during video calls and presentations
+- **Sensitive Documents**: Viewing confidential information
+- **Shared Computers**: Quick privacy when using shared devices
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Technical Details
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+The extension uses:
+- Manifest V3 for modern Chrome extension standards
+- Content scripts for page opacity control
+- Chrome Storage API for per-tab settings
+- Chrome Commands API for keyboard shortcuts
 
-**Edit a file directly in GitHub**
+## Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
+This project also includes a web demo built with:
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+To run the web demo:
+```sh
+npm i
+npm run dev
+```
 
-Simply open [Lovable](https://lovable.dev/projects/6a9ecd92-cac7-451d-b6ae-5aaad23c320b) and click on Share -> Publish.
+## Support
 
-## Can I connect a custom domain to my Lovable project?
+For issues or feature requests, please create an issue in the repository.
 
-Yes, you can!
+## License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is open source and available under the MIT License.
