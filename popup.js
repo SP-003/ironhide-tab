@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Load saved state
   const result = await chrome.storage.local.get([`ironhide_${tabId}`]);
-  const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 1.0 };
+  const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 100 };
 
   // Initialize UI
   updateUI(savedState.enabled, savedState.opacity);
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       await chrome.tabs.sendMessage(tabId, {
         action: 'togglePrivacy',
         enabled: newEnabled,
-        opacity: savedState.opacity
+        opacity: savedState.opacity / 100 // Convert percentage to 0-1 range
       });
     } catch (error) {
       console.log('Could not send message to content script:', error);
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Opacity slider event
   opacitySlider.addEventListener('input', async (e) => {
-    const newOpacity = parseFloat(e.target.value);
+    const newOpacity = parseInt(e.target.value);
     savedState.opacity = newOpacity;
     
     await chrome.storage.local.set({ [`ironhide_${tabId}`]: savedState });
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       try {
         await chrome.tabs.sendMessage(tabId, {
           action: 'updateOpacity',
-          opacity: newOpacity
+          opacity: newOpacity / 100 // Convert percentage to 0-1 range
         });
       } catch (error) {
         console.log('Could not send message to content script:', error);
@@ -76,6 +76,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Update opacity display
     opacitySlider.value = opacity;
-    opacityValue.textContent = `${(opacity * 100).toFixed(0)}%`;
+    opacityValue.textContent = `${opacity}%`;
   }
 });

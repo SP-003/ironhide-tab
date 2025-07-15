@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [opacity, setOpacity] = useState([1]);
+  const [opacity, setOpacity] = useState([100]);
   const { toast } = useToast();
 
   // Keyboard shortcut handler
@@ -31,7 +31,7 @@ const Index = () => {
 
   // Apply opacity effect to the demo content
   const contentStyle = {
-    opacity: isEnabled ? opacity[0] : 1,
+    opacity: isEnabled ? opacity[0] / 100 : 1, // Convert percentage to 0-1 range
     transition: 'opacity 0.3s ease-in-out'
   };
 
@@ -93,20 +93,20 @@ const Index = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <p className="font-medium">Opacity Level</p>
-                <Badge variant="outline">{Math.round(opacity[0] * 100)}%</Badge>
+                <Badge variant="outline">{opacity[0]}%</Badge>
               </div>
               <Slider
                 value={opacity}
                 onValueChange={setOpacity}
-                max={1}
+                max={100}
                 min={0}
-                step={0.1}
+                step={10}
                 disabled={!isEnabled}
                 className="w-full"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0.0 (Invisible)</span>
-                <span>1.0 (Fully Visible)</span>
+                <span>0% (Invisible)</span>
+                <span>100% (Fully Visible)</span>
               </div>
             </div>
 
@@ -169,7 +169,7 @@ const Index = () => {
               <div>
                 <h4 className="font-semibold mb-2">Features</h4>
                 <ul className="text-sm space-y-1 text-muted-foreground">
-                  <li>• Adjustable opacity from 0.0-1.0</li>
+                  <li>• Adjustable opacity from 0-100%</li>
                   <li>• Quick toggle button</li>
                   <li>• Keyboard shortcut support</li>
                   <li>• Per-tab control</li>
