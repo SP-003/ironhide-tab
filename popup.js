@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Load saved state
   const result = await chrome.storage.local.get([`ironhide_${tabId}`]);
-  const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 100 };
+  const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 1.0 };
 
   // Initialize UI
   updateUI(savedState.enabled, savedState.opacity);
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Opacity slider event
   opacitySlider.addEventListener('input', async (e) => {
-    const newOpacity = parseInt(e.target.value);
+    const newOpacity = parseFloat(e.target.value);
     savedState.opacity = newOpacity;
     
     await chrome.storage.local.set({ [`ironhide_${tabId}`]: savedState });
@@ -76,6 +76,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Update opacity display
     opacitySlider.value = opacity;
-    opacityValue.textContent = `${opacity}%`;
+    opacityValue.textContent = `${(opacity * 100).toFixed(0)}%`;
   }
 });

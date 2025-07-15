@@ -1,6 +1,6 @@
 // IronHide Content Script
 let isPrivacyEnabled = false;
-let currentOpacity = 100;
+let currentOpacity = 1.0;
 let privacyOverlay = null;
 
 // Initialize on page load
@@ -11,7 +11,7 @@ async function initialize() {
   const tabId = await getCurrentTabId();
   if (tabId) {
     const result = await chrome.storage.local.get([`ironhide_${tabId}`]);
-    const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 100 };
+    const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 1.0 };
     
     if (savedState.enabled) {
       applyPrivacyMode(savedState.opacity);
@@ -96,10 +96,10 @@ function createPrivacyOverlay() {
 
 function updateOverlayOpacity() {
   if (privacyOverlay) {
-    // Convert opacity percentage to overlay transparency
-    // 100% opacity = no overlay (transparent)
-    // 0% opacity = full white overlay
-    const overlayOpacity = (100 - currentOpacity) / 100;
+    // Convert opacity value to overlay transparency
+    // 1.0 opacity = no overlay (transparent)
+    // 0.0 opacity = full white overlay
+    const overlayOpacity = 1 - currentOpacity;
     privacyOverlay.style.opacity = overlayOpacity.toString();
   }
 }
@@ -114,9 +114,12 @@ async function togglePrivacyMode() {
   if (!tabId) return;
   
   const result = await chrome.storage.local.get([`ironhide_${tabId}`]);
-  const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 100 };
+  const savedState = result[`ironhide_${tabId}`] || { enabled: false, opacity: 1.0 };
   
   savedState.enabled = !savedState.enabled;
+  if (savedState.enabled) {
+    savedState.opacity = 0.0; // Make invisible when toggling on
+  }
   await chrome.storage.local.set({ [`ironhide_${tabId}`]: savedState });
   
   if (savedState.enabled) {

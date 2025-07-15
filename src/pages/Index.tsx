@@ -105,8 +105,8 @@ const Index = () => {
                 className="w-full"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0% (Invisible)</span>
-                <span>100% (Fully Visible)</span>
+                <span>0.0 (Invisible)</span>
+                <span>1.0 (Fully Visible)</span>
               </div>
             </div>
 
@@ -169,7 +169,7 @@ const Index = () => {
               <div>
                 <h4 className="font-semibold mb-2">Features</h4>
                 <ul className="text-sm space-y-1 text-muted-foreground">
-                  <li>• Adjustable opacity from 0-100%</li>
+                  <li>• Adjustable opacity from 0.0-1.0</li>
                   <li>• Quick toggle button</li>
                   <li>• Keyboard shortcut support</li>
                   <li>• Per-tab control</li>
@@ -186,6 +186,13 @@ const Index = () => {
                   <li>• Presentation privacy</li>
                 </ul>
               </div>
+            </div>
+            <Separator />
+            <div className="p-4 bg-muted/50 rounded-lg">
+              <h4 className="font-semibold mb-2">Contact & Support</h4>
+              <p className="text-sm text-muted-foreground">
+                For questions, feedback, or support contact: <strong>saymyname355601@gmail.com</strong>
+              </p>
             </div>
           </CardContent>
         </Card>
