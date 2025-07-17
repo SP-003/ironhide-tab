@@ -85,10 +85,11 @@ function createPrivacyOverlay() {
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
     z-index: 2147483647 !important;
     pointer-events: none !important;
     transition: opacity 0.3s ease !important;
+    backdrop-filter: blur(8px) !important;
   `;
   
   document.documentElement.appendChild(privacyOverlay);
