@@ -25,9 +25,10 @@
   "commands": {
     "toggle-privacy": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Z"
+        "default": "Ctrl+Shift+H",
+        "mac": "Command+Shift+H"
       },
-      "description": "Toggle privacy mode"
+      "description": "Toggle IronHide privacy mode"
     }
   },
   "icons": {
